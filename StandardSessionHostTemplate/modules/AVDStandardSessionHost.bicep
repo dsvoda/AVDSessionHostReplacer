@@ -16,7 +16,7 @@ param AcceleratedNetworking bool
 param Tags object = {}
 
 param ImageReference object
-param SecurityProfile object
+param SecurityProfile object = {}
 
 //HostPool join
 param HostPoolName string
@@ -194,7 +194,7 @@ resource VM 'Microsoft.Compute/virtualMachines@2023-09-01' = {
       settings: {
         Name: DomainJoinObject.DomainName
         OUPath: DomainJoinObject.OUPath
-        User: '${DomainJoinObject.DomainName}\\${DomainJoinObject.UserName}'
+        User: '${DomainJoinObject.DomainName}\\${DomainJoinObject.DomainJoinUserName}'
         Restart: 'true'
 
         //will join the domain and create the account on the domain. For more information see https://msdn.microsoft.com/en-us/library/aa392154(v=vs.85).aspx'
